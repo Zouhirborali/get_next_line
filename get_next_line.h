@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:35:18 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/20 20:21:40 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/01/20 20:32:09 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #include <stdlib.h>
 
 char *get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2,	char *re);
+char	*ft_strjoin(char  *s1, char const *s2);
 size_t	ft_strlen(const char *s);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strdup(const char *s1);

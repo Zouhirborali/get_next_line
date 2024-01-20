@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:34:55 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/20 20:23:44 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/01/20 20:31:42 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char *get_txt(int fd ,char *str)////////
         {
             x = read(fd,buff,BUFFER_SIZE);
             buff[x]='\0';
-            str = ft_strjoin(str,buff,str);
+            str = ft_strjoin(str,buff);
         }
     }
     return str;

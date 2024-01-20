@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:35:00 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/20 20:23:15 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/01/20 20:32:51 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ char	*ft_strdup(const char *s1)
 	re[x] = '\0';
 	return (re);
 }
-char	*ft_strjoin(char const *s1, char const *s2,	char *re)
+char	*ft_strjoin(char  *s1, char const *s2)
 {
-
+    char *re =NULL;
 	int		xx;
 	int		x;
-	
+
 
 	x = 0;
 	xx = 0;
@@ -79,5 +79,6 @@ char	*ft_strjoin(char const *s1, char const *s2,	char *re)
 		xx++;
 		x++;
 	}
+	free(s1);
 	return (re);
 }
