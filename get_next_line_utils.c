@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:35:00 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/19 20:07:25 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/01/20 20:23:15 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ void	ft_bzero(void *s, size_t n)
 		*((char *)(s + n)) = 0;
 	}
 }
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size,	char	*re)
 {
-	char	*re;
-
 	re = malloc (count * size);
 	if (!re)
 		return (NULL);
@@ -41,9 +39,8 @@ void	*ft_calloc(size_t count, size_t size)
 }
 char	*ft_strdup(const char *s1)
 {
-	char	*re;
 	int		x;
-
+	char *re;
 	x = 0;
 	re = malloc(sizeof(char) * ft_strlen((char *)s1) + 1);
 	if (!re)
@@ -56,17 +53,17 @@ char	*ft_strdup(const char *s1)
 	re[x] = '\0';
 	return (re);
 }
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2,	char *re)
 {
-	char	*re;
+
 	int		xx;
 	int		x;
+	
 
 	x = 0;
 	xx = 0;
-	if (!s1 && !s2)
-		return (0);
-	re = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+	
+	re = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char),re);
 	if (!re)
 		return (NULL);
 	while (s1[x])
