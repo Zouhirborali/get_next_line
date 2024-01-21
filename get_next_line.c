@@ -6,87 +6,118 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:34:55 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/20 20:31:42 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/01/21 13:55:48 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	chek_n(char *s)
 {
-	char	*re;
-	int		x;
+	size_t	i;
 
 	if (!s)
-		return (NULL);
-	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	re = malloc((len + 1));
-	if (!re)
-		return (NULL);
-	x = 0;
-	while (len)
+		return (0);
+	i = 0;
+	while (s[i])
 	{
-		re[x++] = s[start++];
-		len--;
+		if (s[i] == '\n')
+			return (1);
+		i++;
 	}
-	re[x] = '\0';
-	return (re);
+	return (0);
 }
-int check_n(char *str)
+int get_n(char *str)
 {
-    int x =0;
-    while (str[x])
-    {
-        if(str[x]=='\n')
-            return x+1;
-        x++;
-    }
-    return x;
-    
+	int i =0;
+	if (!str[0])
+		return (0);
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (str[i] == '\n')
+		i++;
+	return (i);
 }
-
-
-char *get_txt(int fd ,char *str)////////
+char	*ft_readed_line(char *start)
 {
-    char buff[BUFFER_SIZE+1];
-    int x=1;
+	int		i;
+	int x;
+	char	*line;
 
-    str =ft_strdup("");
-    if(*str == '\0')
-    {
-        while (x > 0 )
-        {
-            x = read(fd,buff,BUFFER_SIZE);
-            buff[x]='\0';
-            str = ft_strjoin(str,buff);
-        }
-    }
-    return str;
+	x = 0;
+	if (!start[0])
+		return (NULL);
+	i = get_n(start);
+	line = malloc(1 + i );
+	if (!line)
+		return (NULL);
+	while (i>x)
+	{
+		line[x] = start[x];
+		x++;
+	}
+	line[i] = '\0';
+	return (line);
 }
-char *get_next_line(int fd)
+
+char	*ft_move_start(char	*start)
 {
-    static char *str =NULL;
-    char *re;
+	char	*new_str;
+	int		i;
+	int		j;
 
-    
-    if(!str)
-    {
-        //printf("1");
-        str = get_txt(fd, str);
-       
-    }
-   // printf("1");
-   //printf("|%s|",str);
-    if(*str == '\0')
-        return NULL;
-    re =ft_substr(str,0,check_n(str));
-    str+=check_n(str);
-        //
-    return re;
+	i = get_n(start);
+	if (i == 0)
+	{
+		free(start);
+		return (NULL);
+	}
+	new_str = malloc(1 + ft_strlen(start) - i);
+	if (!new_str)
+		return (NULL);
+	j = 0;
+	while (start[i + j])
+	{
+		new_str[j] = start[i + j];
+		j++;
+	}
+	new_str[j] = '\0';
+	free(start);
+	return (new_str);
 }
+
+char	*get_next_line(int fd)
+{
+	char		*buff;
+	int			x;
+	static char	*start_str;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	x = 1;
+	buff = malloc(1 + BUFFER_SIZE);
+	if (!buff)
+		return (NULL);
+	while (!(chek_n(start_str)) && x > 0)
+	{
+		x = read(fd, buff, BUFFER_SIZE);
+		if (x < 0)
+		{
+			free(buff);
+			return (NULL);
+		}
+		buff[x] = '\0';
+		//printf("5");
+		start_str = ft_strjoin(start_str, buff);
+	}
+	free(buff);
+	//printf("|%s|",start_str);
+	buff = ft_readed_line(start_str);
+	start_str = ft_move_start(start_str);
+	return (buff);
+}
+
 // int main() {
 //     int fb;
 //     int br;
@@ -95,12 +126,12 @@ char *get_next_line(int fd)
 //     // Open the file for reading
 //     fb = open("t.txt", O_RDONLY);
 
-
+	
 //     printf("%s",get_next_line(fb));
-   
-//   printf("%s",get_next_line(fb));
-// //  printf("%s",get_next_line(fb));
-//    // printf("%s",get_next_line(fb));
+//    //printf("01234567890123456789012345678901234567890");
+//  //printf("%s",get_next_line(fb));
+//  // printf("%s",get_next_line(fb));
+//  //   printf("%s",get_next_line(fb));
 // //  printf("%s",get_next_line(fb));
 // //    printf("%s",get_next_line(fb));
 // //  printf("%s",get_next_line(fb));
