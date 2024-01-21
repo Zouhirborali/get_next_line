@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:34:55 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/21 13:55:48 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/01/21 17:17:57 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,12 @@ char	*get_next_line(int fd)
 	int			x;
 	static char	*start_str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || read(fd, 0, 0) == -1 || BUFFER_SIZE <= 0)
+    {
+        free(start_str);
+		start_str = NULL;
 		return (NULL);
+    }
 	x = 1;
 	buff = malloc(1 + BUFFER_SIZE);
 	if (!buff)

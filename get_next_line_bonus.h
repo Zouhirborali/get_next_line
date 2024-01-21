@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 13:35:18 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/21 17:52:45 by zbakkas          ###   ########.fr       */
+/*   Created: 2024/01/21 14:08:29 by zbakkas           #+#    #+#             */
+/*   Updated: 2024/01/21 14:49:24 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE
-#define GET_NEXT_LINE
+#ifndef GET_NEXT_LINE_BONUS
+#define GET_NEXT_LINE_BONUS
 
 
 #ifndef BUFFER_SIZE

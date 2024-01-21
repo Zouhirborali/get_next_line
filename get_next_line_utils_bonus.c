@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 13:35:00 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/21 17:52:41 by zbakkas          ###   ########.fr       */
+/*   Created: 2024/01/21 14:08:31 by zbakkas           #+#    #+#             */
+/*   Updated: 2024/01/21 14:49:05 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char	*str)
 {
