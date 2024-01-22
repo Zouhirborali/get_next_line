@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 14:08:31 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/21 20:10:30 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:20:55 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,35 @@ char	*ft_strjoin(char *start, char *buff)
 	re[xx] = '\0';
 	free(start);
 	return (re);
+}
+
+int	chek_n(char *s)
+{
+	size_t	i;
+
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	get_n(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str[0])
+		return (0);
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (str[i] == '\n')
+		i++;
+	return (i);
 }

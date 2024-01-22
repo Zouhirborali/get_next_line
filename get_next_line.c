@@ -6,88 +6,57 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:34:55 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/21 20:07:00 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:24:16 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	chek_n(char *s)
-{
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	get_n(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str[0])
-		return (0);
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	if (str[i] == '\n')
-		i++;
-	return (i);
-}
-
-char	*ft_readed_line(char *start)
+char	*read_line(char *str)
 {
 	int		i;
 	int		x;
 	char	*line;
 
 	x = 0;
-	if (!start[0])
+	if (!str[0])
 		return (NULL);
-	i = get_n(start);
+	i = get_n(str);
 	line = malloc(1 + i);
 	if (!line)
 		return (NULL);
 	while (i > x)
 	{
-		line[x] = start[x];
+		line[x] = str[x];
 		x++;
 	}
 	line[i] = '\0';
 	return (line);
 }
 
-char	*ft_move_start(char	*start)
+char	*next_line(char	*str)
 {
 	char	*new_str;
 	int		i;
 	int		j;
 
-	i = get_n(start);
+	i = get_n(str);
 	if (i == 0)
 	{
-		free(start);
+		free(str);
 		return (NULL);
 	}
-	new_str = malloc(1 + ft_strlen(start) - i);
+	new_str = malloc(1 + ft_strlen(str) - i);
 	if (!new_str)
 		return (NULL);
 	j = 0;
-	while (start[i + j])
+	while (str[i + j])
 	{
-		new_str[j] = start[i + j];
+		new_str[j] = str[i + j];
 		j++;
 	}
 	new_str[j] = '\0';
-	free(start);
+	free(str);
 	return (new_str);
 }
 
@@ -95,29 +64,29 @@ char	*get_next_line(int fd)
 {
 	char		*buff;
 	int			x;
-	static char	*start_str;
+	static char	*str;
 
 	if (fd < 0 || read(fd, 0, 0) == -1 || BUFFER_SIZE <= 0)
 	{
-		free(start_str);
-		start_str = NULL;
+		free(str);
+		str = NULL;
 		return (NULL);
 	}
 	x = 1;
 	buff = malloc(1 + BUFFER_SIZE);
 	if (!buff)
 		return (NULL);
-	while (!(chek_n(start_str)) && x > 0)
+	while (!(chek_n(str)) && x > 0)
 	{
 		x = read(fd, buff, BUFFER_SIZE);
 		if (x < 0)
 			return (free(buff), NULL);
 		buff[x] = '\0';
-		start_str = ft_strjoin(start_str, buff);
+		str = ft_strjoin(str, buff);
 	}
 	free(buff);
-	return (buff = ft_readed_line(start_str),
-		start_str = ft_move_start(start_str), buff);
+	return (buff = read_line(str),
+		str = next_line(str), buff);
 }
 
 // int main() {

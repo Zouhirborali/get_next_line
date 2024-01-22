@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:35:18 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/21 19:48:01 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:13:56 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 
 size_t	ft_strlen(char *str);
 char	*get_next_line(int fd);
-char	*ft_readed_line(char *src);
-char	*ft_move_start(char *start);
+char	*read_line(char *str);
+char	*next_line(char	*str);
 char	*ft_strjoin(char *start, char *buff);
+int		chek_n(char *s);
+int		get_n(char *str);
 #endif

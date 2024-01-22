@@ -6,7 +6,7 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 14:08:29 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/21 20:24:48 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:20:36 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 4
 # endif
 
 # include <unistd.h>
@@ -25,7 +25,9 @@
 
 size_t	ft_strlen(char *str);
 char	*get_next_line(int fd);
-char	*ft_readed_line(char *src);
-char	*ft_move_start(char *start);
+char	*read_line(char *str);
+char	*next_line(char	*str);
 char	*ft_strjoin(char *start, char *buff);
+int		chek_n(char *s);
+int		get_n(char *str);
 #endif

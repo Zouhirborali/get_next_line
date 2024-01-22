@@ -6,88 +6,57 @@
 /*   By: zbakkas <zbakkas@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 14:08:35 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/01/21 21:26:27 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:23:32 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int	chek_n(char *s)
-{
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	get_n(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str[0])
-		return (0);
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	if (str[i] == '\n')
-		i++;
-	return (i);
-}
-
-char	*ft_readed_line(char *start)
+char	*read_line(char *str)
 {
 	int		i;
 	int		x;
 	char	*line;
 
 	x = 0;
-	if (!start[0])
+	if (!str[0])
 		return (NULL);
-	i = get_n(start);
+	i = get_n(str);
 	line = malloc(1 + i);
 	if (!line)
 		return (NULL);
 	while (i > x)
 	{
-		line[x] = start[x];
+		line[x] = str[x];
 		x++;
 	}
 	line[i] = '\0';
 	return (line);
 }
 
-char	*ft_move_start(char	*start)
+char	*next_line(char	*str)
 {
 	char	*new_str;
 	int		i;
 	int		j;
 
-	i = get_n(start);
+	i = get_n(str);
 	if (i == 0)
 	{
-		free(start);
+		free(str);
 		return (NULL);
 	}
-	new_str = malloc(1 + ft_strlen(start) - i);
+	new_str = malloc(1 + ft_strlen(str) - i);
 	if (!new_str)
 		return (NULL);
 	j = 0;
-	while (start[i + j])
+	while (str[i + j])
 	{
-		new_str[j] = start[i + j];
+		new_str[j] = str[i + j];
 		j++;
 	}
 	new_str[j] = '\0';
-	free(start);
+	free(str);
 	return (new_str);
 }
 
@@ -116,16 +85,23 @@ char	*get_next_line(int fd)
 		start_str[fd] = ft_strjoin(start_str[fd], buff);
 	}
 	free(buff);
-	return (buff = ft_readed_line(start_str[fd]),
-		start_str[fd] = ft_move_start(start_str[fd]), buff);
+	return (buff = read_line(start_str[fd]),
+		start_str[fd] = next_line(start_str[fd]), buff);
 }
 // int main() {
-//     int fb;
+//     int fb,fb2;
 //     int br;
 //     char buffer[11];
-//     // Open the file for reading
+//     //Open the file for reading
 //     fb = open("t.txt", O_RDONLY);
-//     printf("%s",get_next_line(fb));
+
+// 	    fb2 = open("t2.txt", O_RDONLY);
+// 	printf("%s",get_next_line(fb));
+//     printf("%s",get_next_line(fb2));
+// 	printf("%s",get_next_line(fb));
+//     printf("%s",get_next_line(fb2));
+// 	printf("%s",get_next_line(fb));
+//     printf("%s",get_next_line(fb2));
 //    //printf("01234567890123456789012345678901234567890");
 //  //printf("%s",get_next_line(fb));
 //  // printf("%s",get_next_line(fb));
